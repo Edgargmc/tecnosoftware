@@ -1,0 +1,80 @@
+<div class="row">
+    <div class="col-lg-12 search-container">
+        <form class="form-search form-inline float-right">
+            <input type="text" class="search-query "  placeholder="Search..." ng-model="query"/>
+            <span class="fas fa-search search-icon"></span>
+        </form>
+    </div>
+    <div class="container">
+        <div class="row main-header">
+            <div class="col-12 col-md-8 title">Empresas</div>
+            <div class="col-9 row-header">Nombre de Empresa</div>
+            <div class="col-3 row-header">Ubicación</div>
+        </div>
+        <div class="row companie-list" ng-class="{selected: activeRow == companie.name}"
+             ng-repeat="companie in companies | filter:query | orderBy: orderList"
+             ng-click='setSelectedCompanie(companie)'>
+            <div class="col-9 item-companie">{{ companie.name }}</div>
+            <div class="col-3 item-companie">{{ companie.offices[0].country }}</div>
+            <div class="row"  ng-show="activeRow == companie.name">
+                <div class="row companie-info-container companie-details">
+                    <div class="col-lg-10 col-sm-10 section-title">Datos de la Empresa <span class="icon"></span> </div>
+                    <div class="col-lg-1 col-sm-2 section-title"><i class="fas fa-times float-right" ng-click='closeDetail($event)' ></i></div>
+                    <div class="row info-container">
+                        <div class="col-lg-4 col-sm-12">
+                            <label class="label-info">Nombre:</label>
+                            <label>{{ companie.name }}</label>
+                        </div>
+                        <div class="col-lg-4 col-sm-12">
+                            <label class="label-info">Teléfono:</label>
+                            <label>{{ companie.offices[0].phone }}</label>
+                        </div>
+                        <div class="col-lg-4 col-sm-12">
+                            <label class="label-info">País:</label>
+                            <label>{{ companie.offices[0].country }}</label>
+                        </div>
+                        <div class="col-lg-4 col-sm-12">
+                            <label class="label-info">Dirección:</label>
+                            <label>{{ companie.offices[0].address }}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row companie-info-container products-container">
+                    <div class="col-lg-12 section-title">Productos <span class="icon"></span></div>
+                    <div class="col-12 products-list"
+                         ng-repeat="product in products">
+                        <div class="col-lg-4 col-sm-12">
+                            <label class="label-info">Producto {{$index + 1}}:</label>
+                            <label>{{ product.name }}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row companie-info-container clients-container">
+                    <div class="col-lg-12 section-title">Clientes<span class="icon"></span></div>
+                    <div class="col-12 products-list"
+                         ng-repeat="client in clients">
+                        <div class="row info-container">
+                            <div class="col-lg-4">
+                                <label class="label-info">Nombre:</label>
+                                <label>{{ client.name }}</label>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="label-info">Teléfono:</label>
+                                <label>{{ client.offices[0].phone }}</label>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="label-info">País:</label>
+                                <label>{{ client.offices[0].country }}</label>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="label-info">Dirección:</label>
+                                <label>{{ client.offices[0].address }}</label>
+                            </div>
+                        </div>
+                        <hr class="separator" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
